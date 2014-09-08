@@ -5,6 +5,7 @@ public class Tree implements TreeInterface{
 	private Node root;
 	private int height=0;
 	private int i = 0;
+	private double budget = 0.0;
 	//static private int numCount = 0;
 	
 	public Tree(){}
@@ -13,8 +14,9 @@ public class Tree implements TreeInterface{
 		return this.root;
 	}
 	
-	public void constructTree(String[] data, int numLine){
+	public void constructTree(String[] data, int numLine, double portfolioBudget){
 		height = numLine/3;
+		budget = portfolioBudget;
 		root = new Node(data[0],Double.parseDouble(data[1]),Double.parseDouble(data[2]),0.00);
 		createNode(data,root,1);
 	}
@@ -23,10 +25,15 @@ public class Tree implements TreeInterface{
 		if(i>=height){
 			return;
 		}
-		currNode.left = new Node(data[i*3],Double.parseDouble(data[i*3+1]),Double.parseDouble(data[i*3+2]),currNode.totalPrice);
+		if((currNode.totalPrice+Double.parseDouble(data[i*3+1]))<budget){
+			currNode.left = new Node(data[i*3],Double.parseDouble(data[i*3+1]),Double.parseDouble(data[i*3+2]),currNode.totalPrice);
+			createNode(data,currNode.left,i+1);
+		}
+		else{
+			currNode.left = null;
+		}
 		currNode.right = new Node(data[i*3],Double.parseDouble(data[i*3+1]),Double.parseDouble(data[i*3+2]),currNode.totalPrice);
 		currNode.right.setBuyFalse();
-		createNode(data,currNode.left,i+1);
 		createNode(data,currNode.right,i+1);
 		return;
 	}
@@ -45,7 +52,7 @@ public class Tree implements TreeInterface{
 		
 		printNode.printNode();
 		printCall(printNode.left);
-		//printCall(printNode.right);
+		printCall(printNode.right);
 		return;
 	}
 

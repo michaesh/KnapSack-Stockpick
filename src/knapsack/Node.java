@@ -32,10 +32,10 @@ public class Node {
 	}
 	
 	public void printNode(){
-		System.out.println(quote);
-		System.out.println(price);
-		System.out.println(totalPrice);
-		System.out.println(value);
+		System.out.println("Quote: "+quote);
+		System.out.println("Asset Price: "+price);
+		System.out.println("Portfolio Price: "+totalPrice);
+		System.out.println("Asset Momentum: "+value);
 		System.out.println("");
 	}
 	
