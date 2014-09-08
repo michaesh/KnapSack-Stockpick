@@ -7,3 +7,6 @@ My approach is similar, but constructs a binary tree, each level being an asset 
 This approach could be faster than dynamic program, because instead of recomputing the entire solution space everytime a new asset is available, my approach would only need to append the new asset to the leaves of existing tree to determine maximum yielding portfolio composition. 
 
 Momentum is defined as the growth of an asset over the period of last 12 to 2 months. By the 4-factor model, this is a good indicator of the prospect of a stock, i.e. its value.
+
+Uses
+- BST
